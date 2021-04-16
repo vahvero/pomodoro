@@ -13,6 +13,8 @@
     # <the program executes 25 minutes and 5 minute cycles>
     ```
 
+    Program exits with `ctrl+c`
+
     Authors:
         Vahvero
 """
@@ -34,6 +36,9 @@ REST_NAME = "Rötväys"
 WORK_MESSAGE = "Start work!"
 REST_MESSAGE = "Start rest!"
 STEP_SIZE = 100
+
+# Create system invariant clear for cmd
+clear = lambda: os.system("cls") if os.name == "nt" else lambda: os.system("clear")
 
 def create_bar(title, fill="#", suffix="%(percent)d%%"):
     """Create progress library bar
@@ -59,9 +64,9 @@ def start(work=25, rest=5):
     """
     root = tkinter.Tk()
     root.withdraw()
-    # Create system invariant clear for cmd
-    clear = lambda: os.system("cls") if os.name == "nt" else lambda: os.system("clear")
+
     clear()
+
     # Calculcate sleep time for 100 steps of the bars
     work_sleep = work * MINUTE / STEP_SIZE
     rest_sleep = rest * MINUTE / STEP_SIZE
@@ -83,4 +88,7 @@ def start(work=25, rest=5):
         clear()
 
 if __name__ == "__main__":
-    fire.Fire(start)
+    try:
+        fire.Fire(start)
+    except KeyboardInterrupt:
+        pass

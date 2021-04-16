@@ -30,3 +30,6 @@ Install requirements
 
 Run
     python main.py 25 5
+
+
+Exit program by `ctrl+c`.
