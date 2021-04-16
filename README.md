@@ -14,6 +14,7 @@ Install requirements
     pip install -r requirements.txt
 
 Run
+
     py main.py 25 5
 
 
